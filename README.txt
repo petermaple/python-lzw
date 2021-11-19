@@ -1,24 +1,6 @@
-This is the README file for lzw, small, low level, pure python module
-for simple, stream-friendly data compression, built around iterators.
-Please see the accompanying LICENSE.txt file for license terms.
-
-lzw currently requires python 2.7 or python 3.4 to run.
-
-Before going on, potential users are advised to take a look at the
-gzip, zlib, bz2, zipfile, and tarfile modules available in the python
-standard library, which are dynamite-fast, mature, well supported, and
-generally awesome.
-
-Seriously, check them out! You've already got them!
-
-----
-
-This software is in Pre-Alpha release, any bug reports (or even
-stories about ways you use the software, or wish you could use the
-software) are appreciated! Mail joerbowers@joe-bowers.com with your
-info.
-
----
+下载 http://192.168.1.1/downloadFile?file=/var/config/psi
+去除60位：
+dd if=psi of=psilzw bs=1 count=1000000 skip=60
 
 INSTALLING
 
@@ -32,19 +14,15 @@ Ok, moving on.
 
 The easiest way to use lzw is probably something like this
 
->>> import lzw
->>>
->>> infile = lzw.readbytes("My Uncompressed File.txt")
->>> compressed = lzw.compress(infile)
->>> lzw.writebytes("My Compressed File.lzw", compressed)
->>>
->>> # Then later (or elsewhere)
->>> infile = lzw.readbytes("My Compressed File.lzw", compressed)
->>> uncompressed = lzw.decompress(infile)
->>> for bt in uncompressed:
->>> 	do_something_awesome_with_this_byte(bt)
->>>
+>> import lzw
 
+>> filepath = "your_psi_file_deleted_previous_60"
+>> infile = lzw.readbytes(filepath, 1024)
+>> uncompressed = lzw.decompress(infile)
+>> with open('your_save_file', 'wb') as f:
+    for bt in uncompressed:
+        f.write(bt)
+注意tab
 See the module documentation for more details.
 
 ---
